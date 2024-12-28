@@ -1,5 +1,5 @@
 import { program } from 'commander';
-import diff from './fileParse.js';
+import compare from './filesCompare.js';
 
 export default () => {
   program
@@ -10,7 +10,7 @@ export default () => {
     .arguments('<filepath1> <filepath2>')
     .option('-f, --format [type]', 'output format')
     .action((filepath1, filepath2) => {
-      diff(filepath1, filepath2);
+      console.log(compare(filepath1, filepath2));
     });
-  program.parse(process.argv);
+  program.parse();
 };
