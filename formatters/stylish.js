@@ -20,7 +20,7 @@ export default (data) => {
   const iter = (currentData, depth) => {
     const typeValue = {
       added: '+',
-      deleted: '-',
+      removed: '-',
       unchanged: ' ',
     };
     const result = currentData.map((item) => {
@@ -30,12 +30,12 @@ export default (data) => {
       switch (type) {
         case 'added':
           return `${getIndentPrimitive(depth)}${typeValue[type]} ${key}: ${stringify(value, depth)}`;
-        case 'deleted':
+        case 'removed':
           return `${getIndentPrimitive(depth)}${typeValue[type]} ${key}: ${stringify(value, depth)}`;
         case 'unchanged':
           return `${getIndentPrimitive(depth)}${typeValue[type]} ${key}: ${stringify(value, depth)}`;
-        case 'changed':
-          return `${getIndentPrimitive(depth)}${typeValue.deleted} ${key}: ${stringify(oldValue, depth)}\n${getIndentPrimitive(depth)}${typeValue.added} ${key}: ${stringify(newValue, depth)}`;
+        case 'updated':
+          return `${getIndentPrimitive(depth)}${typeValue.removed} ${key}: ${stringify(oldValue, depth)}\n${getIndentPrimitive(depth)}${typeValue.added} ${key}: ${stringify(newValue, depth)}`;
         case 'nested':
           return `${getIndentObject(depth)}${key}: ${iter(value, depth + 1)}`;
         default:

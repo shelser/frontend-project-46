@@ -12,12 +12,14 @@ const formatsNested = ['json', 'yaml'];
 const getFixturePath = (name) => path.join(__dirname, '..', '__fixtures__', name);
 
 let expectedPlain;
-let expectedNested;
+let expectedStylishFormat;
+let expectedPlainFormat;
 const randomFormat = (arrFormats) => _.sample(arrFormats);
 
 beforeAll(() => {
   expectedPlain = fs.readFileSync(getFixturePath('plainFileResult.txt'), 'utf-8');
-  expectedNested = fs.readFileSync(getFixturePath('nestedFileResult.txt'), 'utf-8');
+  expectedStylishFormat = fs.readFileSync(getFixturePath('stylishFormatResult.txt'), 'utf-8');
+  expectedPlainFormat = fs.readFileSync(getFixturePath('plainFormatResult.txt'), 'utf-8');
 });
 
 test('test1: getting a string from plain .json files', () => {
@@ -40,10 +42,18 @@ test('test3: random formats from plain files', () => {
   expect(actual).toEqual(expectedPlain.trim());
 });
 
-test('test4: matching with the nested file result', () => {
+test('test4: matching with the stylish format result', () => {
   const file1Path1 = getFixturePath(`file1.${randomFormat(formatsNested)}`);
   const file1Path2 = getFixturePath(`file2.${randomFormat(formatsNested)}`);
   const actual = compare(file1Path1, file1Path2);
   console.log(actual);
-  expect(actual).toEqual(expectedNested.trim());
+  expect(actual).toEqual(expectedStylishFormat.trim());
+});
+
+test('test5: matching with the plain format result', () => {
+  const file1Path1 = getFixturePath(`file1.${randomFormat(formatsNested)}`);
+  const file1Path2 = getFixturePath(`file2.${randomFormat(formatsNested)}`);
+  const actual = compare(file1Path1, file1Path2, 'plain');
+  console.log(actual);
+  expect(actual).toEqual(expectedPlainFormat.trim());
 });

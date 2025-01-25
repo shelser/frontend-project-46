@@ -11,7 +11,7 @@ const buildTree = (data1, data2) => {
         return { key, value: data2[key], type: 'added' };
       }
       if (!_.has(data2, key)) {
-        return { key, value: data1[key], type: 'deleted' };
+        return { key, value: data1[key], type: 'removed' };
       }
       if (_.isEqual(data1[key], data2[key])) {
         return { key, value: data2[key], type: 'unchanged' };
@@ -20,7 +20,7 @@ const buildTree = (data1, data2) => {
         key,
         oldValue: data1[key],
         newValue: data2[key],
-        type: 'changed',
+        type: 'updated',
       };
     });
   return tree;
