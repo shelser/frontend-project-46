@@ -1,6 +1,6 @@
 import buildTree from './buildTree.js';
 import parsers from './parsers.js';
-import formatters from '../formatters/index.js';
+import formatters from './formatters/index.js';
 
 export default (filePath1, filePath2, format = 'stylish') => {
   const data1 = parsers(filePath1);

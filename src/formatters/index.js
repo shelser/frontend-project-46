@@ -4,4 +4,5 @@ import plain from './plain.js';
 export default {
   stylish,
   plain,
+  json: JSON.stringify,
 };

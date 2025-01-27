@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "My second project is on Hexlet. The difference calculator.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "jest"
   },
