@@ -4,7 +4,7 @@ const typeValue = (value) => {
   if (_.isObject(value)) {
     return '[complex value]';
   }
-  return typeof value === 'boolean' || value === null ? value : `'${value}'`;
+  return typeof value === 'string' ? `'${value}'` : value;
 };
 
 export default (data) => {
